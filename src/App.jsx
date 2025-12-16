@@ -1,9 +1,9 @@
-import { Layout } from "./views/Layout";
+import { Outlet } from "react-router-dom";
 
 export default function App() {
   return (
-    <div className="min-h-screen flex justify-center">
-      <Layout />
+    <div className="min-h-screen">
+      <Outlet />
     </div>
   );
 }

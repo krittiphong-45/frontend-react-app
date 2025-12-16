@@ -9,16 +9,21 @@ import { Layout } from "./views/Layout.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <App />,
     children: [
-      { path: "/", element: <Home /> },
-      { path: "/owner", element: <Owner /> },
+      {
+        path: "/",
+        element: <Layout />,
+        children: [
+          { path: "/", element: <Home /> },
+          { path: "/owner", element: <Owner /> },
+        ],
+      },
+      // { path: "/owner", element: <Owner /> },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router}>
-    <App />
-  </RouterProvider>
+  <RouterProvider router={router} />
 );
