@@ -27,7 +27,7 @@ export function AdminTable({ users, setUsers, fetchUsers, API }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(API, form);
+      await axios.post(API, form, { withCredentials: true });
       await fetchUsers();
       // Reset the form
       setForm({
@@ -43,7 +43,7 @@ export function AdminTable({ users, setUsers, fetchUsers, API }) {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this user?")) return;
-    await axios.delete(`${API}/${id}`);
+    await axios.delete(`${API}/${id}`, { withCredentials: true });
     setUsers(users.filter((user) => user._id !== id));
   };
 
@@ -58,7 +58,7 @@ export function AdminTable({ users, setUsers, fetchUsers, API }) {
 
   const handleEditSave = async (id) => {
     try {
-      await axios.patch(`${API}/${id}`, editForm);
+      await axios.patch(`${API}/${id}`, editForm, {withCredentials: true});
       await fetchUsers();
       setEditId(null);
     } catch (error) {
@@ -146,7 +146,7 @@ export function AdminTable({ users, setUsers, fetchUsers, API }) {
                       className="bg-white w-24 px-2 rounded border"
                     />
                   </td>
-                  <td className="border p-2 ">
+                  <td className="border p-2 flex items-center justify-center gap-x-4  ">
                     <button
                       onClick={() => handleEditSave(user._id)}
                       className="cursor-pointer bg-teal-400 hover:bg-teal-500 text-white px-2 rounded-xl"
@@ -166,7 +166,7 @@ export function AdminTable({ users, setUsers, fetchUsers, API }) {
                   <td className="border p-2 ">{user.username}</td>
                   <td className="border p-2 ">{user.email}</td>
                   <td className="border p-2 ">{user.role}</td>
-                  <td className="border p-2 ">
+                  <td className="border p-2 flex items-center justify-center gap-x-4  ">
                     <button
                       onClick={() => handleEdit(user)}
                       className="cursor-pointer bg-yellow-400 hover:bg-yellow-500 text-white px-2 rounded-xl"
