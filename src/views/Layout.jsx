@@ -15,7 +15,7 @@ export function Layout() {
       setAuthLoding(true);
       try {
         const response = await axios.get(`${apiBase}/auth/cookie/me`, {
-          withCredentials: true,
+          withCredentials: true
         });
         setUser(response.data.user);
       } catch (error) {
